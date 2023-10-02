@@ -1,11 +1,14 @@
 import kotlin.random.Random
 
 fun main() {
-    val player = Player(20, 7, 30)
-    val monster = Monster(25, 5, 25, 1..6)
+    val maxPlayerHealth = 30
+    val percent = 30.0
+
+    val player = Player(20, 7, maxPlayerHealth)
+    val monster = Monster(15, 5, 25, 1..6)
 
     while (player.isAlive && monster.isAlive) {
-        if (player.isAlive && Random.nextDouble() < 0.3) {
+        if (player.isAlive && player.health < maxPlayerHealth * percent / 100) {
             player.heal()
         }
         player.attack(monster)
